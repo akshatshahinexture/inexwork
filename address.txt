@@ -15,8 +15,5 @@ public void save(List<Address> entities) throws SQLException {
                 statement.executeBatch(); // Execute every 1000 items.
             }
         }
-        statement.setString(2, address.getSomeProperty(city));
-        statement.setString(3, address.getSomeProperty(state));
-        statement.setString(4, address.getSomeProperty(country));
     }
 }
