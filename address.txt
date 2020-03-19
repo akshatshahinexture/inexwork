@@ -1,0 +1,22 @@
+public void save(List<Address> entities) throws SQLException {
+   try (
+        Connection connection = database.getConnection();
+        PreparedStatement statement = connection.prepareStatement(SQL_INSERT);
+    ) {
+        int i = 0;
+
+        for (Address address : entities) {
+            statement.setString(1, entity.getSomeProperty());
+            statement.setString(1, address.getSomeProperty("address"));
+            statement.addBatch();
+            i++;
+
+            if (i % 1000 == 0 || i == entities.size()) {
+                statement.executeBatch(); // Execute every 1000 items.
+            }
+        }
+        statement.setString(2, address.getSomeProperty(city));
+        statement.setString(3, address.getSomeProperty(state));
+        statement.setString(4, address.getSomeProperty(country));
+    }
+}
